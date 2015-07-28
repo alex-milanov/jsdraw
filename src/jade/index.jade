@@ -1,0 +1,91 @@
+doctype html
+html
+	head
+		title JSDraw Alpha
+		link(rel="stylesheet",href="lib/font-awesome.css")
+		link(rel="stylesheet",href="css/style.css")
+	body
+		.gui
+			.toolbar
+				.logo JSDraw
+				a.panel-toggle.fa.fa-bars.toggled(
+					data-toggle-ref=".left-panel",
+					data-toggle-class="opened"
+				)
+				.left-bar
+					| Mode: &nbsp;
+					a.obj-mode-option.selected(
+						data-option-param="obj-mode",
+						data-option-value="move"
+					) M
+					a.obj-mode-option(
+						data-option-param="obj-mode",
+						data-option-value="scale"
+					) S
+					a.obj-mode-option(
+						data-option-param="obj-mode",
+						data-option-value="rotate"
+					) R
+				.right-bar
+					a.debug-toggle(
+						data-toggle-ref=".indexes",
+						data-toggle-class="visible",
+						data-toggle-param="debug"
+					) Debug
+					input.indexes(placeholder="Indexes")
+					a.fullscreen-toggle(
+						data-toggle-ref=".canvas",
+						data-toggle-class="fullscreen"
+					) Full Screen
+			.left-panel.opened
+				.object-pane
+					.pane-title Object Pane
+					.pane-body
+						ul.props
+							li
+								label Name 
+								input#object-pane-name(type="text")
+							li
+								label Position 
+								input.p30#object-pane-pos-x(type="number")
+								input.p30#object-pane-pos-y(type="number")
+								input.p30#object-pane-pos-z(type="number")
+							li
+								label Color 
+								input#object-pane-color(type="text")
+						a.btn.object-update-trigger(
+							data-trigger-method="updateMesh",
+							data-trigger-id=false
+						) Update
+				.scene-pane
+					.pane-title Toolbox
+					.pane-body
+						.section
+							.title Layers
+							a.btn.new-mesh-trigger(
+								data-trigger-method="newMesh"
+							) New Layer
+							a.btn.clear-scene-trigger(
+								data-trigger-method="clearScene"
+							) Clear Scene
+							ul.entities#mesh-entities
+								li
+									| Layer 1
+									a.entity-edit-trigger(
+										data-trigger-method="edit",
+										data-trigger-id="1"
+								)
+			.viewport
+				canvas.canvas
+				
+		//- lib
+		script(src="lib/jquery.js")
+		script(src="lib/lodash.js")
+		script(src="lib/three.min.js")
+		script(src="lib/threex.keyboardstate.js")
+		//- gui
+		script(src="js/gui/element.js")
+		script(src="js/gui/panel.js")
+		script(src="js/gui/toolbar.js")
+		//- app
+		script(src="js/main.js")
