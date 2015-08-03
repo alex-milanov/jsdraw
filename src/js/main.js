@@ -4,6 +4,6 @@ var context = {
 	params: {}
 }
 
-var app = new gui.Element("body", context);
+var canvas = new jsd.Canvas("canvas.canvas");
 
-app.init();
+canvas.init();

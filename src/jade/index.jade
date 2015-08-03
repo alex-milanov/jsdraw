@@ -15,24 +15,18 @@ html
 				.left-bar
 					| Mode: &nbsp;
 					a.obj-mode-option.selected(
-						data-option-param="obj-mode",
-						data-option-value="move"
-					) M
+						data-option-param="draw-mode",
+						data-option-value="pen"
+					) Pen
 					a.obj-mode-option(
-						data-option-param="obj-mode",
-						data-option-value="scale"
-					) S
+						data-option-param="draw-mode",
+						data-option-value="bucket"
+					) Bucket
 					a.obj-mode-option(
-						data-option-param="obj-mode",
-						data-option-value="rotate"
-					) R
+						data-option-param="draw-mode",
+						data-option-value="text"
+					) Text
 				.right-bar
-					a.debug-toggle(
-						data-toggle-ref=".indexes",
-						data-toggle-class="visible",
-						data-toggle-param="debug"
-					) Debug
-					input.indexes(placeholder="Indexes")
 					a.fullscreen-toggle(
 						data-toggle-ref=".canvas",
 						data-toggle-class="fullscreen"
@@ -81,11 +75,10 @@ html
 		//- lib
 		script(src="lib/jquery.js")
 		script(src="lib/lodash.js")
-		script(src="lib/three.min.js")
-		script(src="lib/threex.keyboardstate.js")
 		//- gui
 		script(src="js/gui/element.js")
 		script(src="js/gui/panel.js")
 		script(src="js/gui/toolbar.js")
+		script(src="js/jsd/canvas.js")
 		//- app
 		script(src="js/main.js")
