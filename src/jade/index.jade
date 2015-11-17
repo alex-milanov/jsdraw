@@ -17,19 +17,19 @@ html
 				.left-bar
 					| Mode: &nbsp;
 					a.obj-mode-option.selected(
-						data-option-param="draw-mode",
+						data-option-param="mode",
 						data-option-value="pencil"
 					): i.fa.fa-pencil
 					a.obj-mode-option(
-						data-option-param="draw-mode",
+						data-option-param="mode",
 						data-option-value="eraser"
 					): i.fa.fa-eraser
 					a.obj-mode-option(
-						data-option-param="draw-mode",
+						data-option-param="mode",
 						data-option-value="fill"
 					): i.fa.fa-archive
 					a.obj-mode-option(
-						data-option-param="draw-mode",
+						data-option-param="mode",
 						data-option-value="text"
 					): i.fa.fa-font
 			.left-panel.opened
@@ -41,10 +41,10 @@ html
 							ul
 								li
 									label Width
-									input#canvas-width
+									input#canvas-width(value=640)
 								li
 									label Height
-									input#canvas-height
+									input#canvas-height(value=480)
 				.pane
 					.pane-title Toolbox 
 					.pane-body
@@ -53,10 +53,16 @@ html
 							ul
 								li
 									label FG
-									input(type="color", value="#ffffff")#color-fg
+									input(type="color", value="#000000")#color-fg
 								li
 									label BG
-									input(type="color", value="#000")#color-bg
+									input(type="color", value="#ffffff")#color-bg
+							.title Brush
+							ul
+								li
+									label Size
+									input(type="number", value=1)#brush-size
+
 				.pane
 					.pane-title Layers
 					.pane-body
