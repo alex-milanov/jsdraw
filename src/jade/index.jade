@@ -2,83 +2,86 @@ doctype html
 html
 	head
 		title JSDraw Alpha
-		link(rel="stylesheet",href="lib/font-awesome.css")
+		link(rel="stylesheet",href="/lib/font-awesome/css/font-awesome.css")
 		link(rel="stylesheet",href="css/style.css")
 	body
 		.gui
 			.toolbar
-				.logo JSDraw
-				a.panel-toggle.fa.fa-bars.toggled(
-					data-toggle-ref=".left-panel",
-					data-toggle-class="opened"
-				)
+				.logo 
+					i.fa.fa-paint-brush
+					| JSDraw
+				//- a.panel-toggle.fa.fa-bars.toggled(
+				//- 	data-toggle-ref=".left-panel",
+				//- 	data-toggle-class="opened"
+				//- )
 				.left-bar
 					| Mode: &nbsp;
 					a.obj-mode-option.selected(
 						data-option-param="draw-mode",
-						data-option-value="pen"
-					) Pen
+						data-option-value="pencil"
+					): i.fa.fa-pencil
 					a.obj-mode-option(
 						data-option-param="draw-mode",
-						data-option-value="bucket"
-					) Bucket
+						data-option-value="eraser"
+					): i.fa.fa-eraser
+					a.obj-mode-option(
+						data-option-param="draw-mode",
+						data-option-value="fill"
+					): i.fa.fa-archive
 					a.obj-mode-option(
 						data-option-param="draw-mode",
 						data-option-value="text"
-					) Text
-				.right-bar
-					a.fullscreen-toggle(
-						data-toggle-ref=".canvas",
-						data-toggle-class="fullscreen"
-					) Full Screen
+					): i.fa.fa-font
 			.left-panel.opened
-				.object-pane
-					.pane-title Object Pane
-					.pane-body
-						ul.props
-							li
-								label Name 
-								input#object-pane-name(type="text")
-							li
-								label Position 
-								input.p30#object-pane-pos-x(type="number")
-								input.p30#object-pane-pos-y(type="number")
-								input.p30#object-pane-pos-z(type="number")
-							li
-								label Color 
-								input#object-pane-color(type="text")
-						a.btn.object-update-trigger(
-							data-trigger-method="updateMesh",
-							data-trigger-id=false
-						) Update
-				.scene-pane
-					.pane-title Toolbox
+				.pane
+					.pane-title Project Properties
 					.pane-body
 						.section
-							.title Layers
-							a.btn.new-mesh-trigger(
-								data-trigger-method="newMesh"
-							) New Layer
-							a.btn.clear-scene-trigger(
-								data-trigger-method="clearScene"
-							) Clear Scene
-							ul.entities#mesh-entities
+							.title Canvas
+							ul
 								li
-									| Layer 1
+									label Width
+									input#canvas-width
+								li
+									label Height
+									input#canvas-height
+				.pane
+					.pane-title Toolbox 
+					.pane-body
+						.section
+							.title Colors
+							ul
+								li
+									label FG
+									input(type="color", value="#ffffff")#color-fg
+								li
+									label BG
+									input(type="color", value="#000")#color-bg
+				.pane
+					.pane-title Layers
+					.pane-body
+						.section
+							//- .title Layers
+							ul.layers
+								li
+									span Layer 1
 									a.entity-edit-trigger(
 										data-trigger-method="edit",
 										data-trigger-id="1"
 								)
+							a.btn.new-mesh-trigger(
+								data-trigger-method="newMesh"
+							) New Layer
 			.viewport
 				canvas.canvas
 				
 		//- lib
-		script(src="lib/jquery.js")
-		script(src="lib/lodash.js")
+		script(src="/lib/jquery/dist/jquery.js")
+		script(src="/lib/lodash/lodash.js")
 		//- gui
-		script(src="js/gui/element.js")
-		script(src="js/gui/panel.js")
-		script(src="js/gui/toolbar.js")
-		script(src="js/jsd/canvas.js")
+		script(src="/js/gui/element.js")
+		script(src="/js/gui/panel.js")
+		script(src="/js/gui/toolbar.js")
+		script(src="/js/jsd/canvas.js")
 		//- app
 		script(src="js/main.js")

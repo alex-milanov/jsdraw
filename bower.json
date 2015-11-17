@@ -13,8 +13,16 @@
     "tests"
   ],
   "dependencies": {
+    "font-awesome": "~4.4.0",
     "jquery": "~2.1.4",
-    "font-awesome": "~4.3.0",
     "lodash": "~3.10.0"
+  },
+  "overrides": {
+    "font-awesome": {
+      "main": [
+        "css/**/*.css",
+        "fonts/**/*"
+      ]
+    }
   }
 }

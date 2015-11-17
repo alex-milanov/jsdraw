@@ -5,11 +5,16 @@
 		bottom: 0px;
 		right: 0px;
 		left: 0px;
-		background: #777;
+		background: #555;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
 		.canvas {
 			position: absolute;
-			top: 0px;
-			left: 0px;
+			top: 10px;
+			left: 10px;
 			width: 640px;
 			height: 480px;
 			background: #fff;
