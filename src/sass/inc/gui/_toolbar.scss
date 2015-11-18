@@ -17,10 +17,12 @@
 			top: 0px;
 		}
 		.logo {
-			font-size: 24px;
+			font-size: 22px;
 			font-family: $jsd-logo-font;
 			font-weight: bold;
-			left: 10px;
+			left: 0px;
+			text-align: center;
+			width: 100%;
 		}
 		a {
 			min-width: 30px;

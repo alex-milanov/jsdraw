@@ -1,19 +1,24 @@
 .gui {
-	.left-panel {
+	.panel {
 		background: #999;
 		color: #000;
 		position: absolute;
 		top: $jsd-toolbar-height;
-		left: 0px;
 		bottom: 0px;
 		width: 0px;
 		padding: 0px 0px;
+		&.left {
+			left:0px
+		}
+		&.right {
+			right:0px
+		}
 		&.opened {
 			width: $jsd-panel-width;
-			& + .viewport {
+			/* & + .viewport {
 				left: $jsd-panel-width;
 				border-left-width:0px;
-			}
+			} */
 		}
 		a.btn {
 			padding: 0px;

@@ -17,10 +17,10 @@ var context = {
 	}
 }
 
-var canvas = new jsd.Canvas("canvas.canvas", context);
+var view = new jsd.View(".viewport .view", context);
 
 $(document).ready(function(){
-	canvas.init();
+	view.init();
 
 	$("#canvas-width").change(function(){
 		context.dimentions.width = $(this).val();

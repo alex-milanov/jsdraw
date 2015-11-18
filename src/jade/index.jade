@@ -14,25 +14,25 @@ html
 				//- 	data-toggle-ref=".left-panel",
 				//- 	data-toggle-class="opened"
 				//- )
-				.left-bar
-					| Mode: &nbsp;
-					a.obj-mode-option.selected(
-						data-option-param="mode",
-						data-option-value="pencil"
-					): i.fa.fa-pencil
-					a.obj-mode-option(
-						data-option-param="mode",
-						data-option-value="eraser"
-					): i.fa.fa-eraser
-					a.obj-mode-option(
-						data-option-param="mode",
-						data-option-value="fill"
-					): i.fa.fa-archive
-					a.obj-mode-option(
-						data-option-param="mode",
-						data-option-value="text"
-					): i.fa.fa-font
-			.left-panel.opened
+				//- .left-bar
+				//- 	| Mode: &nbsp;
+				//- 	a.obj-mode-option.selected(
+				//- 		data-option-param="mode",
+				//- 		data-option-value="pencil"
+				//- 	): i.fa.fa-pencil
+				//- 	a.obj-mode-option(
+				//- 		data-option-param="mode",
+				//- 		data-option-value="eraser"
+				//- 	): i.fa.fa-eraser
+				//- 	a.obj-mode-option(
+				//- 		data-option-param="mode",
+				//- 		data-option-value="fill"
+				//- 	): i.fa.fa-archive
+				//- 	a.obj-mode-option(
+				//- 		data-option-param="mode",
+				//- 		data-option-value="text"
+				//- 	): i.fa.fa-font
+			.left.panel.opened
 				.pane
 					.pane-title Project Properties
 					.pane-body
@@ -62,7 +62,9 @@ html
 								li
 									label Size
 									input(type="number", value=1)#brush-size
-
+			.viewport
+				.view
+			.right.panel.opened
 				.pane
 					.pane-title Layers
 					.pane-body
@@ -78,8 +80,6 @@ html
 							a.btn.new-mesh-trigger(
 								data-trigger-method="newMesh"
 							) New Layer
-			.viewport
-				canvas.canvas
 				
 		//- lib
 		script(src="/lib/jquery/dist/jquery.js")
@@ -88,6 +88,6 @@ html
 		script(src="/js/gui/element.js")
 		script(src="/js/gui/panel.js")
 		script(src="/js/gui/toolbar.js")
-		script(src="/js/jsd/canvas.js")
+		script(src="/js/jsd/view.js")
 		//- app
 		script(src="js/main.js")

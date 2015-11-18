@@ -5,16 +5,16 @@ if(typeof gui === "undefined"){ var gui = {}; }
 
 gui.Element = function(dom, context){
 
-	this._dom = dom;
-	this._context = (typeof context === 'undefined') ? this : context ;
+	this.dom = $(dom);
+	this.context = (typeof context === 'undefined') ? this : context ;
 
 };
 
 gui.Element.prototype.init = function(){
 
-	var context = this._context;
+	var context = this.context;
 
-	$(this._dom).on("click","a[class*='-toggle']",function(){
+	$(this.dom).on("click","a[class*='-toggle']",function(){
 		$(this).toggleClass("toggled");
 		var $toggleRef = $($(this).data("toggle-ref"));
 		var _toggleClass = $(this).data("toggle-class");
@@ -25,7 +25,7 @@ gui.Element.prototype.init = function(){
 		}
 	});
 
-	$(this._dom).on("click","a[class*='-trigger']",function(){
+	$(this.dom).on("click","a[class*='-trigger']",function(){
 		var _triggerMethod = $(this).data("trigger-method");
 		if(typeof context[_triggerMethod] !== "undefined"){
 			if($(this).data("trigger-id")){
@@ -36,7 +36,7 @@ gui.Element.prototype.init = function(){
 	});
 
 
-	$(this._dom).on("click","a[class*='-option']",function(_ev){
+	$(this.dom).on("click","a[class*='-option']",function(_ev){
 		$("a[class*='-option']").removeClass("selected");
 		$(this).addClass("selected");
 
