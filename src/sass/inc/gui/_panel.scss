@@ -1,25 +1,9 @@
 .gui {
 	.panel {
-		background: #999;
-		color: #000;
-		position: absolute;
-		top: $jsd-toolbar-height;
-		bottom: 0px;
-		width: 0px;
+		background: $jsd-panel-bg-color;
+		color: $jsd-panel-fg-color;
 		padding: 0px 0px;
-		&.left {
-			left:0px
-		}
-		&.right {
-			right:0px
-		}
-		&.opened {
-			width: $jsd-panel-width;
-			/* & + .viewport {
-				left: $jsd-panel-width;
-				border-left-width:0px;
-			} */
-		}
+		
 		a.btn {
 			padding: 0px;
 			margin: 5px;
@@ -27,25 +11,25 @@
 			height: 25px;
 			line-height: 25px;
 			font-size:14px;
-			background: #888;
+			background: $jsd-panel-title-bg-color;
 			display: block;
 			cursor: pointer;
 			&:hover {
-				background: #777;
+				background: $jsd-panel-section-title-bg-color;
 			}
 
 		}
 		.pane {
 			margin-bottom: 20px;
 			.pane-title {
-				background: #777;
-				padding: 2px;
+				background: $jsd-panel-title-bg-color;
+				padding: 4px;
 				font-size: 14px;
 			}
 			.section {
 				.title {
-					background: #888;
-					padding: 2px;
+					background: $jsd-panel-section-title-bg-color;
+					padding: 4px;
 					font-size: 12px;
 				}
 				> ul {
@@ -60,10 +44,10 @@
 						cursor: pointer;
 						font-size: 0px;
 						&:hover {
-							background: #888;
+							background: #7a7a7a;
 						}
 						&.selected {
-							background: #777;
+							background: #7f7f7f;
 						}
 						span {
 							display: block;
@@ -98,6 +82,24 @@
 							vertical-align: top;
 							&.p30 {
 								width: 23%;
+							}
+						}
+					}
+					&.tools {
+						padding: 4px 8px;
+						box-sizing: border-box;
+						display: block;
+						width: 100%;
+						font-size: 0px;
+						li {
+							display: inline-block;
+							width: 28px;
+							margin: 2px;
+							padding: 0px;
+							span {
+								font-size: 14px;
+								margin: 0px;
+								padding: 0px;
 							}
 						}
 					}

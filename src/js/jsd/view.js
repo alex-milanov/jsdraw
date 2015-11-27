@@ -103,14 +103,15 @@ jsd.View.prototype.refresh = function(){
 		ctx.lineWidth = path.brush.size;
 		/*ctx.shadowBlur = 1;
 		ctx.shadowColor = 'rgb(0, 0, 0)';*/
+		
 		ctx.beginPath();
+		ctx.moveTo(path.points[0][0],path.points[0][1]);
 		path.points.forEach(function(point, index){
 			if(index == 0)
 				return;
-			ctx.moveTo(path.points[index-1][0],path.points[index-1][1]);
 			ctx.lineTo(point[0], point[1]);
-			ctx.stroke();
 		})
+		ctx.stroke();
 		ctx.closePath();
 	}
 

@@ -1,0 +1,39 @@
+.gui {
+	.header {
+		top: 0px;
+		right: 0px;
+		left: 0px;
+		height: $jsd-header-height;
+		position: absolute;
+		box-sizing: border-box;
+	}
+	.panel {
+		position: absolute;
+		top: $jsd-header-height;
+		bottom: 0px;
+		width: 0px;
+		box-sizing: border-box;
+		&.left {
+			left:0px;
+			border-right: 1px solid $jsd-header-border-color;
+		}
+		&.right {
+			right:0px;
+			border-left: 1px solid $jsd-header-border-color;
+		}
+		&.opened {
+			width: $jsd-panel-width;
+			/* & + .viewport {
+				left: $jsd-panel-width;
+				border-left-width:0px;
+			} */
+		}
+	}
+	.viewport {
+		position: absolute;
+		top: $jsd-header-height;
+		bottom: 0px;
+		right: $jsd-panel-width;
+		left: $jsd-panel-width;
+	}
+}
