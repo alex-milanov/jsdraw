@@ -1,8 +1,10 @@
+'use strict';
 
-if(typeof jsd === "undefined"){ jsd = {}; }
+import jQuery from 'jquery';
+import _ from 'lodash';
+import gui from '../gui';
 
-
-jsd.View = function(dom, context){
+var View = function(dom, context){
 	gui.Element.call(this, dom, context);
 
 	this.context = context;
@@ -14,10 +16,10 @@ jsd.View = function(dom, context){
 
 };
 
-jsd.View.prototype = Object.create( gui.Element );
-jsd.View.prototype.constructor = jsd.View;
+View.prototype = Object.create( gui.Element );
+View.prototype.constructor = View;
 
-jsd.View.prototype.newLayer = function(duplocate){
+View.prototype.newLayer = function(duplocate){
 	var canvas = document.createElement('canvas');
 	canvas.zIndex = 100 + this.layers.length;
 	var layer = {
@@ -27,14 +29,14 @@ jsd.View.prototype.newLayer = function(duplocate){
 	}
 	this.layers.push(layer);
 	this.focusedLayer = this.layers.length-1;
-	$(this.dom)[0].appendChild(canvas);
+	jQuery(this.dom)[0].appendChild(canvas);
 }
 
-jsd.View.prototype.init = function(){
+View.prototype.init = function(){
 	gui.Element.prototype.init.call(this);
 
-	$(this.view).width(this.context.dimentions.width || 640);
-	$(this.view).width(this.context.dimentions.height || 480);
+	jQuery(this.view).width(this.context.dimentions.width || 640);
+	jQuery(this.view).width(this.context.dimentions.height || 480);
 
 	var painting = false;
 	var scope = this;
@@ -42,7 +44,7 @@ jsd.View.prototype.init = function(){
 	var currentPath = [];
 	var ctx = null
 
-	$(this.dom).mousedown(function(e){
+	jQuery(this.dom).mousedown(function(e){
 		currentPath = [];
 		painting = true;
 
@@ -59,7 +61,7 @@ jsd.View.prototype.init = function(){
 		currentPath.push([e.offsetX, e.offsetY]);
 	});
 
-	$(this.dom).mousemove(function(e){
+	jQuery(this.dom).mousemove(function(e){
 		if(painting){
 			ctx.lineTo(e.offsetX, e.offsetY);
 			ctx.stroke();
@@ -67,7 +69,7 @@ jsd.View.prototype.init = function(){
 		}
 	});
 
-	$(this.dom).mouseup(function(e){
+	jQuery(this.dom).mouseup(function(e){
 		ctx.closePath();
 		ctx = null;
 		painting = false;
@@ -81,21 +83,21 @@ jsd.View.prototype.init = function(){
 		scope.refresh();
 	});
 
-	$(this._dom).mouseleave(function(e){
+	jQuery(this._dom).mouseleave(function(e){
 		painting = false;
 	});
 
-	
+
 	this.refresh();
 
 }
 
-jsd.View.prototype.refresh = function(){
+View.prototype.refresh = function(){
 
 	var scope = this;
 
-	$(this.dom).width(this.context.dimentions.width || 640);
-	$(this.dom).height(this.context.dimentions.height || 480);
+	jQuery(this.dom).width(this.context.dimentions.width || 640);
+	jQuery(this.dom).height(this.context.dimentions.height || 480);
 
 	function drawPath(ctx, path){
 		ctx.lineJoin = "round";
@@ -103,7 +105,7 @@ jsd.View.prototype.refresh = function(){
 		ctx.lineWidth = path.brush.size;
 		/*ctx.shadowBlur = 1;
 		ctx.shadowColor = 'rgb(0, 0, 0)';*/
-		
+
 		ctx.beginPath();
 		ctx.moveTo(path.points[0][0],path.points[0][1]);
 		path.points.forEach(function(point, index){
@@ -116,14 +118,14 @@ jsd.View.prototype.refresh = function(){
 	}
 
 	this.layers.forEach(function(layer){
-		layer.canvas.width = $(scope.dom).width();
-		layer.canvas.height = $(scope.dom).height();
+		layer.canvas.width = jQuery(scope.dom).width();
+		layer.canvas.height = jQuery(scope.dom).height();
 		var ctx = layer.canvas.getContext("2d");
 		ctx.clearRect(0, 0, layer.canvas.width, layer.canvas.height); // Clears the canvas
 		layer.paths.forEach(function(path){
 			drawPath(ctx, path);
 		})
 	})
-
-
 }
+
+export default View;

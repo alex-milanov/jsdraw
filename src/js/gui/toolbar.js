@@ -1,21 +1,26 @@
-"use strict";
+'use strict';
 
-if(typeof gui === "undefined"){ gui = {}; }
+import {Observable as $} from 'rx-lite';
+import Element from './element';
 
-gui.Toolbar = function(dom, context){
-	gui.Element.call(this, dom, context);
+var Toolbar = function(dom, context){
+	Element.call(this, dom, context);
 };
 
-gui.Toolbar.prototype = Object.create( gui.Element );
-gui.Toolbar.prototype.constructor = gui.Toolbar;
+Toolbar.prototype = Object.create( Element.prototype );
+Toolbar.prototype.constructor = Toolbar;
 
-gui.Toolbar.prototype.init = function(){
-	
-	gui.Element.prototype.init.call(this);
-	
-	var context = this._context;
+Toolbar.prototype.init = function(){
+	Element.prototype.init.call(this);
+	//jQuery(this.dom).find(".pane-body").perfectScrollbar();
 };
 
-gui.Toolbar.prototype.refresh = function(){
-	
+Toolbar.prototype.refresh = function(){
+
+	let context = this.context;
+	let dom = this.dom;
+
+	//jQuery(this.dom).find(".pane-body").perfectScrollbar('update');
 };
+
+export default Toolbar;
