@@ -1,49 +1,62 @@
 .gui {
 	.header {
-		background: $jsd-header-bg-color;
-		border-bottom: 1px solid $jsd-header-border-color;
+		// background: $jsd-header-bg-color;
+		// border-bottom: 1px solid $jsd-header-border-color;
 		> * {
-			display: block;
+			display: table-cell;
 			height: $jsd-header-height;
 			line-height: $jsd-header-height;
 			margin: 0px;
 			padding: 0px 5px;
 			color: $jsd-header-fg-color;
-			position: absolute;
-			top: 0px;
+		}
+		.toolbox {
+			width: 45%;
+			text-align: right;
 		}
 		.logo {
-			left: 50%;
-			margin-left: -100px;
 			font-size: 20px;
 			font-family: $jsd-logo-font;
 			font-weight: bold;
 			text-align: center;
-			width: 200px;
 		}
-		.left {
-			left: 5px;
-		}
-		.right {
-			right: 5px;
+		.presets {
+			width: 45%;
+			input {
+				font-size:12px;
+				margin: 0px;
+				padding: 0px;
+				padding-left: 5px;
+				display: inline-block;
+				-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+				-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+				box-sizing: border-box;
+				height: 25px;
+				line-height: 25px;
+				border: 0px;
+				outline: none;
+			}
 		}
 		a, button {
 			position: relative;
 			display: inline-block;
-			height: $jsd-header-height - 8px;
-			line-height: $jsd-header-height - 8px;
+			height: $jsd-header-height;
+			line-height: $jsd-header-height;
 			background: inherit;
 			color: #333;
 			font-size: 14px;
 			font-weight: 400;
-			border: 0px;
+			border: none;
 			text-align: center;
 			cursor: pointer;
 			outline: none;
 			padding: 0px 5px;
-			margin: 4px;
+			margin: 0px;
 			&:hover, &.selected, &.toggled {
 				color: #ccc;
+			}
+			&::-moz-focus-inner {
+   			border: 0;
 			}
 		}
 		.visible {

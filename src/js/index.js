@@ -1,11 +1,12 @@
 'use strict';
 
 import jQuery from 'jquery';
+import Element from './gui/element';
 import View from './jsd/view';
 
 var context = {
 	params: {
-		mode: "pencil"
+		tool: "pencil"
 	},
 	colors: {
 		fg: "#000000",
@@ -21,9 +22,11 @@ var context = {
 }
 
 const view = new View(".viewport .view", context);
+const toolbox = new Element(".toolbox", context);
 
 jQuery(document).ready(function(){
 	view.init();
+	toolbox.init();
 
 	jQuery("#canvas-width").change(function(){
 		context.dimentions.width = jQuery(this).val();

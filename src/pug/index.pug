@@ -7,72 +7,35 @@ html
 	body
 		.gui
 			.header
+				.toolbox
+					button.toolbox-option.selected.fa.fa-hand-paper-o(
+						data-option-param='tool',
+						data-option-value='hand'
+					)
+					button.toolbox-option.fa.fa-pencil(
+						data-option-param='tool',
+						data-option-value='pencil'
+					)
+					button.toolbox-option.fa.fa-eraser(
+						data-option-param='tool',
+						data-option-value='eraser'
+					)
+					button.toolbox-option.fa.fa-fire-extinguisher(
+						data-option-param='tool',
+						data-option-value='bucker'
+					)
 				.logo
 					i.fa.fa-paint-brush
 					| JSDraw
-				.right
-					button.fa.fa-file-o
-					button.fa.fa-save
-					button.fa.fa-folder-o
-			.left.panel.opened
-				.pane
-					.pane-title Project Properties
-					.pane-body
-						.section
-							.title Canvas
-							ul
-								li
-									label Width
-									input#canvas-width(value=640)
-								li
-									label Height
-									input#canvas-height(value=480)
-				.pane
-					.pane-title Toolbox
-					.pane-body
-						.section
-							.title Tools
-							ul.tools
-								li.selected: span.fa.fa-pencil
-								li: span.fa.fa-eraser
-								li: span A
-								li: span G
-								li: span C
-								li: span S
-								li: span S
-						.section
-							.title Brush
-							ul
-								li
-									label Size
-									input(type="range", step=1, min=0, max=100, value=1)#brush-size
-						.section
-							.title Colors
-							ul
-								li
-									label FG
-									input(type="color", value="#000000")#color-fg
-								li
-									label BG
-									input(type="color", value="#ffffff")#color-bg
+				.presets
+					.preset-tool-hand
+					.preset-tool-pencil
+						input(type="range", step=1, min=0, max=100, value=1)#brush-size
+						input(type="color", value="#000000")#color-fg
+					.preset-tool-eraser
+					.preset-tool-bucket
 			.viewport
 				.view
-			.right.panel.opened
-				.pane
-					.pane-title Layers
-					.pane-body
-						.section
-							//- .title Layers
-							ul.layers
-								li
-									span Layer 1
-									a.entity-edit-trigger(
-										data-trigger-method="edit",
-										data-trigger-id="1"
-								)
-							a.btn.new-mesh-trigger(
-								data-trigger-method="newMesh"
-							) New Layer
 
 		//- lib
 		//- script(src="/lib/jquery/dist/jquery.js")

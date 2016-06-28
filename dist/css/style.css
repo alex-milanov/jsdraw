@@ -2192,223 +2192,86 @@
   clip: auto; }
 
 body {
-  font-family: "Open Sans" Helvetica Arial sans-serif; }
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  background: #888; }
 
-.gui .header {
+.gui {
+  position: absolute;
   top: 0px;
-  right: 0px;
+  bottom: 0px;
   left: 0px;
-  height: 32px;
-  position: absolute;
-  box-sizing: border-box; }
-
-.gui .panel {
-  position: absolute;
-  top: 32px;
-  bottom: 0px;
-  width: 0px;
-  box-sizing: border-box; }
-  .gui .panel.left {
-    left: 0px;
-    border-right: 1px solid #444; }
-  .gui .panel.right {
-    right: 0px;
-    border-left: 1px solid #444; }
-  .gui .panel.opened {
-    width: 180px;
-    /* & + .viewport {
-				left: $jsd-panel-width;
-				border-left-width:0px;
-			} */ }
-
-.gui .viewport {
-  position: absolute;
-  top: 32px;
-  bottom: 0px;
-  right: 180px;
-  left: 180px; }
-
-.gui .header {
-  background: #ccc;
-  border-bottom: 1px solid #444; }
-  .gui .header > * {
-    display: block;
-    height: 32px;
-    line-height: 32px;
-    margin: 0px;
-    padding: 0px 5px;
-    color: #444;
+  right: 0px; }
+  .gui .header {
+    margin: 5px 0px;
+    width: 100%;
+    height: 38px;
+    display: table;
+    box-sizing: border-box; }
+  .gui .viewport {
     position: absolute;
-    top: 0px; }
-  .gui .header .logo {
-    left: 50%;
-    margin-left: -100px;
-    font-size: 20px;
-    font-family: "Courgette" Helvetica Arial sans-serif;
-    font-weight: bold;
-    text-align: center;
-    width: 200px; }
-  .gui .header .left {
-    left: 5px; }
-  .gui .header .right {
-    right: 5px; }
-  .gui .header a, .gui .header button {
-    position: relative;
-    display: inline-block;
-    height: 24px;
-    line-height: 24px;
-    background: inherit;
-    color: #333;
-    font-size: 14px;
-    font-weight: 400;
-    border: 0px;
-    text-align: center;
-    cursor: pointer;
-    outline: none;
-    padding: 0px 5px;
-    margin: 4px; }
-    .gui .header a:hover, .gui .header a.selected, .gui .header a.toggled, .gui .header button:hover, .gui .header button.selected, .gui .header button.toggled {
-      color: #ccc; }
-  .gui .header .visible {
-    display: inline-block; }
+    top: 43px;
+    bottom: 0px;
+    right: 180px;
+    left: 180px; }
 
-.gui .panel {
-  background: #999;
-  color: #333;
-  padding: 0px 0px; }
-  .gui .panel a.btn {
+.gui .header > * {
+  display: table-cell;
+  height: 38px;
+  line-height: 38px;
+  margin: 0px;
+  padding: 0px 5px;
+  color: #444; }
+
+.gui .header .toolbox {
+  width: 45%;
+  text-align: right; }
+
+.gui .header .logo {
+  font-size: 20px;
+  font-family: "Courgette", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  text-align: center; }
+
+.gui .header .presets {
+  width: 45%; }
+  .gui .header .presets input {
+    font-size: 12px;
+    margin: 0px;
     padding: 0px;
-    margin: 5px;
-    text-align: center;
+    padding-left: 5px;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;
+    /* Firefox, other Gecko */
+    box-sizing: border-box;
     height: 25px;
     line-height: 25px;
-    font-size: 14px;
-    background: #aaa;
-    display: block;
-    cursor: pointer; }
-    .gui .panel a.btn:hover {
-      background: #bbb; }
-  .gui .panel .pane {
-    margin-bottom: 20px; }
-    .gui .panel .pane .pane-title {
-      background: #aaa;
-      padding: 4px;
-      font-size: 14px; }
-    .gui .panel .pane .section .title {
-      background: #bbb;
-      padding: 4px;
-      font-size: 12px; }
-    .gui .panel .pane .section > ul {
-      margin: 0px;
-      padding: 0px;
-      list-style-type: none; }
-      .gui .panel .pane .section > ul li {
-        margin: 5px 0px;
-        padding: 0px 5px;
-        height: 25px;
-        line-height: 25px;
-        cursor: pointer;
-        font-size: 0px; }
-        .gui .panel .pane .section > ul li:hover {
-          background: #7a7a7a; }
-        .gui .panel .pane .section > ul li.selected {
-          background: #7f7f7f; }
-        .gui .panel .pane .section > ul li span {
-          display: block;
-          font-size: 12px;
-          width: 100%;
-          text-align: center;
-          height: 25px;
-          line-height: 25px; }
-        .gui .panel .pane .section > ul li > label, .gui .panel .pane .section > ul li > input {
-          font-size: 12px;
-          margin: 0px;
-          padding: 0px;
-          padding-left: 5px;
-          display: inline-block;
-          -webkit-box-sizing: border-box;
-          /* Safari/Chrome, other WebKit */
-          -moz-box-sizing: border-box;
-          /* Firefox, other Gecko */
-          box-sizing: border-box;
-          height: 25px;
-          line-height: 25px;
-          border: 0px;
-          outline: none; }
-        .gui .panel .pane .section > ul li label {
-          width: 31%; }
-        .gui .panel .pane .section > ul li input {
-          width: 69%;
-          background: #777;
-          color: #333;
-          border-image: none;
-          vertical-align: top; }
-          .gui .panel .pane .section > ul li input.p30 {
-            width: 23%; }
-      .gui .panel .pane .section > ul.tools {
-        padding: 4px 8px;
-        box-sizing: border-box;
-        display: block;
-        width: 100%;
-        font-size: 0px; }
-        .gui .panel .pane .section > ul.tools li {
-          display: inline-block;
-          width: 28px;
-          margin: 2px;
-          padding: 0px; }
-          .gui .panel .pane .section > ul.tools li span {
-            font-size: 14px;
-            margin: 0px;
-            padding: 0px; }
-  .gui .panel .object-pane {
-    background: #999;
-    color: #000;
-    bottom: 0px;
-    width: 100%;
-    height: 200px;
-    display: none; }
-    .gui .panel .object-pane.active {
-      display: block; }
-      .gui .panel .object-pane.active + .scene-pane {
-        bottom: 200px; }
-    .gui .panel .object-pane .props {
-      margin: 0px;
-      padding: 0px;
-      list-style-type: none; }
-      .gui .panel .object-pane .props li {
-        margin: 5px 0px;
-        padding: 0px 5px;
-        height: 30px;
-        line-height: 30px;
-        cursor: pointer;
-        font-size: 0px; }
-        .gui .panel .object-pane .props li:hover {
-          background: #888; }
-        .gui .panel .object-pane .props li.selected {
-          background: #777; }
-        .gui .panel .object-pane .props li > * {
-          font-size: 14px;
-          margin: 0px;
-          padding: 0px;
-          padding-left: 5px;
-          display: inline-block;
-          -webkit-box-sizing: border-box;
-          /* Safari/Chrome, other WebKit */
-          -moz-box-sizing: border-box;
-          /* Firefox, other Gecko */
-          box-sizing: border-box;
-          height: 30px;
-          line-height: 30px;
-          border: 0px;
-          outline: none; }
-        .gui .panel .object-pane .props li label {
-          width: 31%; }
-        .gui .panel .object-pane .props li input {
-          width: 69%;
-          background: #777;
-          color: #333; }
-          .gui .panel .object-pane .props li input.p30 {
-            width: 23%; }
+    border: 0px;
+    outline: none; }
+
+.gui .header a, .gui .header button {
+  position: relative;
+  display: inline-block;
+  height: 38px;
+  line-height: 38px;
+  background: inherit;
+  color: #333;
+  font-size: 14px;
+  font-weight: 400;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  padding: 0px 5px;
+  margin: 0px; }
+  .gui .header a:hover, .gui .header a.selected, .gui .header a.toggled, .gui .header button:hover, .gui .header button.selected, .gui .header button.toggled {
+    color: #ccc; }
+  .gui .header a::-moz-focus-inner, .gui .header button::-moz-focus-inner {
+    border: 0; }
+
+.gui .header .visible {
+  display: inline-block; }
 
 .gui .viewport {
   background: #888;
