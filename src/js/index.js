@@ -1,10 +1,11 @@
 'use strict';
 
-import jQuery from 'jquery';
+import {Observable as $} from 'rx-lite';
+
 import Element from './gui/element';
 import View from './jsd/view';
 
-var context = {
+let context = {
 	params: {
 		tool: "pencil"
 	},
@@ -24,24 +25,13 @@ var context = {
 const view = new View(".viewport .view", context);
 const toolbox = new Element(".toolbox", context);
 
-jQuery(document).ready(function(){
-	view.init();
-	toolbox.init();
+view.init();
+toolbox.init();
 
-	jQuery("#canvas-width").change(function(){
-		context.dimentions.width = jQuery(this).val();
-	})
+document.querySelector("#color-fg").addEventListener('change', () => {
+	context.colors.fg = ev.target.value;
+})
 
-	jQuery("#canvas-height").change(function(){
-		context.dimentions.height = jQuery(this).val();
-	})
-
-	jQuery("#color-fg").change(function(){
-		context.colors.fg = jQuery(this).val();
-	})
-
-	jQuery("#brush-size").change(function(){
-		context.brush.size = jQuery(this).val();
-	})
-
-});
+document.querySelector("#brush-size").addEventListener('change', () => {
+	context.brush.size = ev.target.value;
+})
