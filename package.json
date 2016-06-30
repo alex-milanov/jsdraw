@@ -7,13 +7,13 @@
     "prebuild": "node bin/move-assets.js",
     "build": "npm run build:js && npm run build:sass && npm run build:pug",
     "build:js": "browserify src/js/index.js -o dist/js/app.js -t [ babelify --presets [ es2015 ] ]",
-    "build:sass": "node-sass --include-path=$(node bin/sass-paths.js) src/sass/style.scss dist/css/style.css",
+    "build:sass": "node-sass --include-path=$(node bin/sass-paths.js) src/sass/style.sass dist/css/style.css",
     "build:pug": "pug --out dist --pretty src/pug",
     "watch": "npm run watch:js & npm run watch:sass & npm run watch:pug & npm run livereload",
     "watch:js": "nodemon --watch 'src/js' --exec 'npm run build:js'",
     "watch:sass": "npm run build:sass -- -w",
     "watch:pug": "npm run build:pug -- --watch",
-    "livereload": "live-reload --port 9091 dist/",
+    "livereload": "livereload dist",
     "start": "npm run build && serve --path dist & npm run watch"
   },
   "author": "",
@@ -23,7 +23,7 @@
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
     "fs-extra": "^0.30.0",
-    "live-reload": "^1.1.0",
+    "livereload": "^0.4.1",
     "node-sass": "^3.8.0",
     "node-serve": "0.0.3",
     "nodemon": "^1.9.2",
@@ -31,8 +31,6 @@
   },
   "dependencies": {
     "font-awesome": "^4.6.3",
-    "jquery": "^3.0.0",
-    "lodash": "^4.13.1",
     "rx-lite": "^4.0.8"
   }
 }
