@@ -7374,11 +7374,11 @@ var toolbox = new _element2.default(".toolbox", context);
 view.init();
 toolbox.init();
 
-document.querySelector("#color-fg").addEventListener('change', function () {
+document.querySelector("#color-fg").addEventListener('change', function (ev) {
 	context.colors.fg = ev.target.value;
 });
 
-document.querySelector("#brush-size").addEventListener('change', function () {
+document.querySelector("#brush-size").addEventListener('change', function (ev) {
 	context.brush.size = ev.target.value;
 });
 
