@@ -2202,76 +2202,135 @@ body {
   left: 0px;
   right: 0px; }
   .gui .header {
+    position: absolute;
+    top: 0px;
     margin: 5px 0px;
+    padding: 0px;
     width: 100%;
     height: 38px;
-    display: table;
-    box-sizing: border-box; }
+    line-height: 38px; }
   .gui .viewport {
     position: absolute;
-    top: 43px;
+    top: 48px;
     bottom: 0px;
     right: 180px;
     left: 180px; }
 
 .gui .header > * {
-  display: table-cell;
+  margin: 0px;
+  padding: 0px;
   height: 38px;
   line-height: 38px;
-  margin: 0px;
-  padding: 0px 5px;
-  color: #444; }
+  display: inline-block;
+  display: block;
+  position: absolute;
+  top: 0px; }
 
 .gui .header .toolbox {
-  width: 45%;
+  left: -75px;
+  width: 50%;
   text-align: right; }
 
 .gui .header .logo {
+  top: 0px;
+  left: 50%;
+  margin-left: -75px;
   font-size: 20px;
   font-family: "Courgette", Helvetica, Arial, sans-serif;
   font-weight: bold;
-  text-align: center; }
+  text-align: center;
+  width: 150px; }
 
 .gui .header .presets {
-  width: 45%; }
-  .gui .header .presets input {
-    font-size: 12px;
+  right: -75px;
+  width: 50%; }
+  .gui .header .presets > * {
     margin: 0px;
     padding: 0px;
-    padding-left: 5px;
+    height: 38px;
+    line-height: 38px;
     display: inline-block;
-    -webkit-box-sizing: border-box;
-    /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;
-    /* Firefox, other Gecko */
-    box-sizing: border-box;
-    height: 25px;
-    line-height: 25px;
-    border: 0px;
-    outline: none; }
+    float: left;
+    margin: 0px 5px;
+    font-size: 12px; }
+  .gui .header .presets input {
+    border: 0;
+    outline: none;
+    line-height: 0px; }
+    .gui .header .presets input:focus, .gui .header .presets input:active, .gui .header .presets input::-moz-focus-inner, .gui .header .presets input:-moz-focusring, .gui .header .presets input::-moz-focus-outer {
+      border: 0;
+      outline: none; }
+    .gui .header .presets input[type='range'] {
+      border: 0;
+      outline: none;
+      width: 70px; }
+      .gui .header .presets input[type='range']:focus, .gui .header .presets input[type='range']:active, .gui .header .presets input[type='range']::-moz-focus-inner, .gui .header .presets input[type='range']:-moz-focusring, .gui .header .presets input[type='range']::-moz-focus-outer {
+        border: 0;
+        outline: none; }
+      .gui .header .presets input[type='range']::-webkit-slider-runnable-track {
+        -webkit-appearance: none !important;
+        height: 4px;
+        background: #333;
+        cursor: pointer;
+          cursor-transition: all .2s ease; }
+      .gui .header .presets input[type='range']::-moz-range-track {
+        height: 4px;
+        background: #333;
+        cursor: pointer;
+          cursor-transition: all .2s ease; }
+      .gui .header .presets input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none !important;
+        border: 2px solid #333;
+        height: 10px;
+        width: 10px;
+        border-radius: 100px;
+        background: #aaa;
+        cursor: pointer; }
+      .gui .header .presets input[type='range']::-moz-range-thumb {
+        border: 2px solid #333;
+        height: 10px;
+        width: 10px;
+        border-radius: 100px;
+        background: #aaa;
+        cursor: pointer; }
+  .gui .header .presets .color-preset {
+    position: relative;
+    width: 70px; }
+    .gui .header .presets .color-preset > * {
+      position: absolute;
+      width: 55px;
+      height: 22px;
+      background: 0px; }
+    .gui .header .presets .color-preset #color-fg {
+      top: 4px;
+      left: 0px;
+      z-index: 99; }
+    .gui .header .presets .color-preset #color-bg {
+      bottom: 4px;
+      right: 0px; }
 
 .gui .header a, .gui .header button {
-  position: relative;
-  display: inline-block;
+  margin: 0px;
+  padding: 0px;
   height: 38px;
   line-height: 38px;
+  display: inline-block;
+  border: 0;
+  outline: none;
+  padding: 0px 5px;
+  position: relative;
   background: inherit;
   color: #333;
   font-size: 14px;
   font-weight: 400;
   border: none;
   text-align: center;
-  cursor: pointer;
-  outline: none;
-  padding: 0px 5px;
-  margin: 0px; }
+  cursor: pointer; }
+  .gui .header a:focus, .gui .header a:active, .gui .header a::-moz-focus-inner, .gui .header a:-moz-focusring, .gui .header a::-moz-focus-outer, .gui .header button:focus, .gui .header button:active, .gui .header button::-moz-focus-inner, .gui .header button:-moz-focusring, .gui .header button::-moz-focus-outer {
+    border: 0;
+    outline: none; }
   .gui .header a:hover, .gui .header a.selected, .gui .header a.toggled, .gui .header button:hover, .gui .header button.selected, .gui .header button.toggled {
     color: #ccc; }
-  .gui .header a::-moz-focus-inner, .gui .header button::-moz-focus-inner {
-    border: 0; }
-
-.gui .header .visible {
-  display: inline-block; }
 
 .gui .viewport {
   background: #888;

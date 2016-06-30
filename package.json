@@ -7,7 +7,7 @@
     "prebuild": "node bin/move-assets.js",
     "build": "npm run build:js && npm run build:sass && npm run build:pug",
     "build:js": "browserify src/js/index.js -o dist/js/app.js -t [ babelify --presets [ es2015 ] ]",
-    "build:sass": "node-sass --include-path=$(node bin/sass-paths.js) src/sass/style.scss dist/css/style.css",
+    "build:sass": "node-sass --include-path=$(node bin/sass-paths.js) src/sass/style.sass dist/css/style.css",
     "build:pug": "pug --out dist --pretty src/pug",
     "watch": "npm run watch:js & npm run watch:sass & npm run watch:pug & npm run livereload",
     "watch:js": "nodemon --watch 'src/js' --exec 'npm run build:js'",

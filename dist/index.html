@@ -15,13 +15,11 @@
         </div>
         <div class="logo"><i class="fa fa-paint-brush"></i>JSDraw</div>
         <div class="presets">
-          <div class="preset-tool-hand"></div>
-          <div class="preset-tool-pencil">
-            <input type="range" step="1" min="0" max="100" value="1" id="brush-size">
+          <input type="range" step="1" min="0" max="100" value="1" id="brush-size"><span id="brush-size-value">1</span>
+          <div class="color-preset">
             <input type="color" value="#000000" id="color-fg">
+            <input type="color" value="#ffffff" id="color-bg">
           </div>
-          <div class="preset-tool-eraser"></div>
-          <div class="preset-tool-bucket"></div>
         </div>
       </div>
       <div class="viewport">
