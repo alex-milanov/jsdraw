@@ -28,10 +28,10 @@ const toolbox = new Element(".toolbox", context);
 view.init();
 toolbox.init();
 
-document.querySelector("#color-fg").addEventListener('change', () => {
+document.querySelector("#color-fg").addEventListener('change', ev => {
 	context.colors.fg = ev.target.value;
 })
 
-document.querySelector("#brush-size").addEventListener('change', () => {
+document.querySelector("#brush-size").addEventListener('change', ev => {
 	context.brush.size = ev.target.value;
 })
