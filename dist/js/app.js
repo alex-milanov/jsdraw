@@ -33708,102 +33708,25 @@ var _element = require('./element');
 
 var _element2 = _interopRequireDefault(_element);
 
-var _panel = require('./panel');
-
-var _panel2 = _interopRequireDefault(_panel);
-
-var _toolbar = require('./toolbar');
-
-var _toolbar2 = _interopRequireDefault(_toolbar);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import Panel from './panel';
+// import Toolbar from './toolbar';
 
 exports.default = {
-  Element: _element2.default,
-  Panel: _panel2.default,
-  Toolbar: _toolbar2.default
+  Element: _element2.default
 };
 
-},{"./element":5,"./panel":7,"./toolbar":8}],7:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _rxLite = require('rx-lite');
-
-var _element = require('./element');
-
-var _element2 = _interopRequireDefault(_element);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Panel = function Panel(dom, context) {
-	_element2.default.call(this, dom, context);
-};
-
-Panel.prototype = Object.create(_element2.default.prototype);
-Panel.prototype.constructor = Panel;
-
-Panel.prototype.init = function () {
-	_element2.default.prototype.init.call(this);
-	//jQuery(this.dom).find(".pane-body").perfectScrollbar();
-};
-
-Panel.prototype.refresh = function () {
-
-	var context = this.context;
-	var dom = this.dom;
-
-	//jQuery(this.dom).find(".pane-body").perfectScrollbar('update');
-};
-
-exports.default = Panel;
-
-},{"./element":5,"rx-lite":4}],8:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _rxLite = require('rx-lite');
-
-var _element = require('./element');
-
-var _element2 = _interopRequireDefault(_element);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Toolbar = function Toolbar(dom, context) {
-	_element2.default.call(this, dom, context);
-};
-
-Toolbar.prototype = Object.create(_element2.default.prototype);
-Toolbar.prototype.constructor = Toolbar;
-
-Toolbar.prototype.init = function () {
-	_element2.default.prototype.init.call(this);
-	//jQuery(this.dom).find(".pane-body").perfectScrollbar();
-};
-
-Toolbar.prototype.refresh = function () {
-
-	var context = this.context;
-	var dom = this.dom;
-
-	//jQuery(this.dom).find(".pane-body").perfectScrollbar('update');
-};
-
-exports.default = Toolbar;
-
-},{"./element":5,"rx-lite":4}],9:[function(require,module,exports){
+},{"./element":5}],7:[function(require,module,exports){
 'use strict';
 
 var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
+
+var _element = require('./gui/element');
+
+var _element2 = _interopRequireDefault(_element);
 
 var _view = require('./jsd/view');
 
@@ -33813,7 +33736,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var context = {
 	params: {
-		mode: "pencil"
+		tool: "pencil"
 	},
 	colors: {
 		fg: "#000000",
@@ -33829,9 +33752,11 @@ var context = {
 };
 
 var view = new _view2.default(".viewport .view", context);
+var toolbox = new _element2.default(".toolbox", context);
 
 (0, _jquery2.default)(document).ready(function () {
 	view.init();
+	toolbox.init();
 
 	(0, _jquery2.default)("#canvas-width").change(function () {
 		context.dimentions.width = (0, _jquery2.default)(this).val();
@@ -33850,7 +33775,7 @@ var view = new _view2.default(".viewport .view", context);
 	});
 });
 
-},{"./jsd/view":10,"jquery":1}],10:[function(require,module,exports){
+},{"./gui/element":5,"./jsd/view":8,"jquery":1}],8:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -33992,4 +33917,4 @@ View.prototype.refresh = function () {
 
 exports.default = View;
 
-},{"../gui":6,"jquery":1,"lodash":2}]},{},[9]);
+},{"../gui":6,"jquery":1,"lodash":2}]},{},[7]);

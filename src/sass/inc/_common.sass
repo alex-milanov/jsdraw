@@ -1,0 +1,23 @@
+
+body
+	font-family: $jsd-text-font
+	background: $jsd-viewport-bg-color
+
+@mixin clear-margin
+	margin: 0px
+	padding: 0px
+
+@mixin line-up($line-up-height)
+	height: $line-up-height
+	line-height: $line-up-height
+
+@mixin no-dotted-focus
+	border: 0
+	outline: none
+	&:focus,
+	&:active,
+	&::-moz-focus-inner,
+	&:-moz-focusring,
+	&::-moz-focus-outer
+	    border: 0
+	    outline: none
