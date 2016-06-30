@@ -7,86 +7,23 @@
   <body>
     <div class="gui">
       <div class="header">
+        <div class="toolbox">
+          <button class="toolbox-option selected fa fa-hand-paper-o" data-option-param="tool" data-option-value="hand"></button>
+          <button class="toolbox-option fa fa-pencil" data-option-param="tool" data-option-value="pencil"></button>
+          <button class="toolbox-option fa fa-eraser" data-option-param="tool" data-option-value="eraser"></button>
+          <button class="toolbox-option fa fa-fire-extinguisher" data-option-param="tool" data-option-value="bucker"></button>
+        </div>
         <div class="logo"><i class="fa fa-paint-brush"></i>JSDraw</div>
-        <div class="right">
-          <button class="fa fa-file-o"></button>
-          <button class="fa fa-save"></button>
-          <button class="fa fa-folder-o"></button>
-        </div>
-      </div>
-      <div class="left panel opened">
-        <div class="pane">
-          <div class="pane-title">Project Properties</div>
-          <div class="pane-body">
-            <div class="section">
-              <div class="title">Canvas</div>
-              <ul>
-                <li>
-                  <label>Width</label>
-                  <input id="canvas-width" value="640">
-                </li>
-                <li>
-                  <label>Height</label>
-                  <input id="canvas-height" value="480">
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="pane">
-          <div class="pane-title">Toolbox</div>
-          <div class="pane-body">
-            <div class="section">
-              <div class="title">Tools</div>
-              <ul class="tools">
-                <li class="selected"><span class="fa fa-pencil"></span></li>
-                <li><span class="fa fa-eraser"></span></li>
-                <li><span>A</span></li>
-                <li><span>G</span></li>
-                <li><span>C</span></li>
-                <li><span>S</span></li>
-                <li><span>S</span></li>
-              </ul>
-            </div>
-            <div class="section">
-              <div class="title">Brush</div>
-              <ul>
-                <li>
-                  <label>Size</label>
-                  <input type="range" step="1" min="0" max="100" value="1" id="brush-size">
-                </li>
-              </ul>
-            </div>
-            <div class="section">
-              <div class="title">Colors</div>
-              <ul>
-                <li>
-                  <label>FG</label>
-                  <input type="color" value="#000000" id="color-fg">
-                </li>
-                <li>
-                  <label>BG</label>
-                  <input type="color" value="#ffffff" id="color-bg">
-                </li>
-              </ul>
-            </div>
+        <div class="presets">
+          <input type="range" step="1" min="0" max="100" value="1" id="brush-size"><span id="brush-size-value">1</span>
+          <div class="color-preset">
+            <input type="color" value="#000000" id="color-fg">
+            <input type="color" value="#ffffff" id="color-bg">
           </div>
         </div>
       </div>
       <div class="viewport">
         <div class="view"></div>
-      </div>
-      <div class="right panel opened">
-        <div class="pane">
-          <div class="pane-title">Layers</div>
-          <div class="pane-body">
-            <div class="section">
-              <ul class="layers">
-                <li><span>Layer 1</span><a class="entity-edit-trigger" data-trigger-method="edit" data-trigger-id="1"></a></li>
-              </ul><a class="btn new-mesh-trigger" data-trigger-method="newMesh">New Layer</a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <script src="js/app.js"></script>
