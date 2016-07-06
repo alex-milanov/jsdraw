@@ -10,15 +10,24 @@ class Element {
 				? document.querySelector(dom)
 				: false;
 		this.context = (typeof context === 'undefined') ? this : context ;
+		this.keyPress$ = $.fromEvent(document, 'keypress');
 	}
 	init() {
 
 		let context = this.context;
 		let dom = this.dom;
 
+
+		const keyPress$ = this.keyPress$;
+
 		[].slice.call(dom.querySelectorAll('[class*=\'-toggle\']'))
 			.map(el =>
-				$.fromEvent(el, 'click').map(() => {
+				$.merge(
+					$.fromEvent(el, 'click'),
+					(el.getAttribute('data-toggle-key'))
+						? keyPress$.filter(ev => ev.key === el.getAttribute('data-toggle-key'))
+						: null
+				).map(() => {
 					el.classList.toggle('toggled');
 					let toggleRefEl = document.querySelector(el.getAttribute('data-toggle-ref'));
 					let toggleClass = el.getAttribute('data-toggle-class');
@@ -42,7 +51,12 @@ class Element {
 
 		[].slice.call(dom.querySelectorAll('[class*=\'-trigger\']'))
 			.map(el =>
-				$.fromEvent(el, 'click').map(() => {
+				$.merge(
+					$.fromEvent(el, 'click'),
+					(el.getAttribute('data-trigger-key'))
+						? keyPress$.filter(ev => ev.key === el.getAttribute('data-trigger-key'))
+						: null
+				).map(() => {
 					let triggerMethod = el.getAttribute('data-trigger-method');
 					let triggerId = el.getAttribute('data-trigger-id');
 					if(typeof context[triggerMethod] !== "undefined"){
@@ -56,16 +70,21 @@ class Element {
 			);
 
 		[].slice.call(dom.querySelectorAll('[class*=\'-option\']')).map(el =>
-			$.fromEvent(el, 'click').map(() => {
-				let optionParam = el.getAttribute('data-option-param');
-				let optionValue = el.getAttribute('data-option-value');
-				[].slice.call(dom.querySelectorAll(`[data-option-param='${optionParam}']`))
-					.map(el => el.classList.remove('selected'));
-				el.classList.add('selected');
-				if(!context.params)
-					context.params = {};
-				context.params[optionParam] = optionValue;
-			}).subscribe()
+				$.merge(
+					$.fromEvent(el, 'click'),
+					(el.getAttribute('data-option-key'))
+						? keyPress$.filter(ev => ev.key === el.getAttribute('data-option-key'))
+						: null
+				).map(() => {
+					let optionParam = el.getAttribute('data-option-param');
+					let optionValue = el.getAttribute('data-option-value');
+					[].slice.call(dom.querySelectorAll(`[data-option-param='${optionParam}']`))
+						.map(el => el.classList.remove('selected'));
+					el.classList.add('selected');
+					if(!context.params)
+						context.params = {};
+					context.params[optionParam] = optionValue;
+				}).subscribe()
 		);
 	}
 }

@@ -2,7 +2,6 @@ doctype html
 html
 	head
 		title JSDraw Alpha
-		//- link(rel="stylesheet",href="/lib/font-awesome/css/font-awesome.css")
 		link(rel="stylesheet",href="css/style.css")
 	body
 		.gui
@@ -10,19 +9,23 @@ html
 				.toolbox
 					button.toolbox-option.selected.fa.fa-hand-paper-o(
 						data-option-param='tool',
-						data-option-value='hand'
+						data-option-value='move',
+						data-option-key='v'
 					)
 					button.toolbox-option.fa.fa-pencil(
 						data-option-param='tool',
-						data-option-value='pencil'
+						data-option-value='brush',
+						data-option-key='b'
 					)
 					button.toolbox-option.fa.fa-eraser(
 						data-option-param='tool',
-						data-option-value='eraser'
+						data-option-value='eraser',
+						data-option-key='e'
 					)
 					button.toolbox-option.fa.fa-fire-extinguisher(
 						data-option-param='tool',
-						data-option-value='bucker'
+						data-option-value='bucket',
+						data-option-key='g'
 					)
 				.logo
 					i.fa.fa-paint-brush
