@@ -2193,7 +2193,8 @@
 
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  background: #888; }
+  background: #888;
+  overflow: hidden; }
 
 .gui {
   position: absolute;
