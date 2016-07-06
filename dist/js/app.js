@@ -7251,6 +7251,7 @@ var Element = function () {
 
 		this.dom = dom instanceof HTMLElement ? dom : typeof dom === 'string' ? document.querySelector(dom) : false;
 		this.context = typeof context === 'undefined' ? this : context;
+		this.keyPress$ = _rxLite.Observable.fromEvent(document, 'keypress');
 	}
 
 	_createClass(Element, [{
@@ -7260,8 +7261,12 @@ var Element = function () {
 			var context = this.context;
 			var dom = this.dom;
 
+			var keyPress$ = this.keyPress$;
+
 			[].slice.call(dom.querySelectorAll('[class*=\'-toggle\']')).map(function (el) {
-				return _rxLite.Observable.fromEvent(el, 'click').map(function () {
+				return _rxLite.Observable.merge(_rxLite.Observable.fromEvent(el, 'click'), el.getAttribute('data-toggle-key') ? keyPress$.filter(function (ev) {
+					return ev.key === el.getAttribute('data-toggle-key');
+				}) : null).map(function () {
 					el.classList.toggle('toggled');
 					var toggleRefEl = document.querySelector(el.getAttribute('data-toggle-ref'));
 					var toggleClass = el.getAttribute('data-toggle-class');
@@ -7283,7 +7288,9 @@ var Element = function () {
 			});
 
 			[].slice.call(dom.querySelectorAll('[class*=\'-trigger\']')).map(function (el) {
-				return _rxLite.Observable.fromEvent(el, 'click').map(function () {
+				return _rxLite.Observable.merge(_rxLite.Observable.fromEvent(el, 'click'), el.getAttribute('data-trigger-key') ? keyPress$.filter(function (ev) {
+					return ev.key === el.getAttribute('data-trigger-key');
+				}) : null).map(function () {
 					var triggerMethod = el.getAttribute('data-trigger-method');
 					var triggerId = el.getAttribute('data-trigger-id');
 					if (typeof context[triggerMethod] !== "undefined") {
@@ -7297,7 +7304,9 @@ var Element = function () {
 			});
 
 			[].slice.call(dom.querySelectorAll('[class*=\'-option\']')).map(function (el) {
-				return _rxLite.Observable.fromEvent(el, 'click').map(function () {
+				return _rxLite.Observable.merge(_rxLite.Observable.fromEvent(el, 'click'), el.getAttribute('data-option-key') ? keyPress$.filter(function (ev) {
+					return ev.key === el.getAttribute('data-option-key');
+				}) : null).map(function () {
 					var optionParam = el.getAttribute('data-option-param');
 					var optionValue = el.getAttribute('data-option-value');
 					[].slice.call(dom.querySelectorAll('[data-option-param=\'' + optionParam + '\']')).map(function (el) {
@@ -7371,6 +7380,14 @@ var context = {
 var view = new _view2.default(".viewport .view", context);
 var toolbox = new _element2.default(".toolbox", context);
 
+var presets = {
+	brushSize: document.querySelector("#brush-size"),
+	brushSizeValue: document.querySelector("#brush-size-value")
+};
+
+presets.brushSize.value = context.brush.size;
+presets.brushSizeValue.textContent = context.brush.size;
+
 view.init();
 toolbox.init();
 
@@ -7378,8 +7395,20 @@ document.querySelector("#color-fg").addEventListener('change', function (ev) {
 	context.colors.fg = ev.target.value;
 });
 
-document.querySelector("#brush-size").addEventListener('change', function (ev) {
-	context.brush.size = ev.target.value;
+var brushSizeChange$ = _rxLite.Observable.merge(_rxLite.Observable.fromEvent(presets.brushSize, 'change').map(function (ev) {
+	return ev.target.value;
+}), _rxLite.Observable.fromEvent(document, 'keypress').filter(function (ev) {
+	return ['[', ']'].indexOf(ev.key) > -1;
+}).map(function (ev) {
+	return ev.key === '[' ? context.brush.size - 1 : context.brush.size + 1;
+})).filter(function (value) {
+	return value > 0 && value <= 100;
+});
+
+brushSizeChange$.subscribe(function (value) {
+	context.brush.size = value;
+	presets.brushSizeValue.textContent = value;
+	presets.brushSize.value = value;
 });
 
 },{"./gui/element":4,"./jsd/view":7,"rx-lite":2}],7:[function(require,module,exports){

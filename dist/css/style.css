@@ -2193,7 +2193,8 @@
 
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  background: #888; }
+  background: #888;
+  overflow: hidden; }
 
 .gui {
   position: absolute;
@@ -2213,8 +2214,8 @@ body {
     position: absolute;
     top: 48px;
     bottom: 0px;
-    right: 180px;
-    left: 180px; }
+    right: 0px;
+    left: 0px; }
 
 .gui .header > * {
   margin: 0px;
@@ -2342,7 +2343,8 @@ body {
   .gui .viewport .view {
     position: absolute;
     top: 10px;
-    left: 10px;
+    left: 50%;
+    margin-left: -320px;
     width: 640px;
     height: 480px;
     background: #fff; }

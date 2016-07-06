@@ -25,6 +25,14 @@ let context = {
 const view = new View(".viewport .view", context);
 const toolbox = new Element(".toolbox", context);
 
+const presets = {
+	brushSize: document.querySelector("#brush-size"),
+	brushSizeValue: document.querySelector("#brush-size-value")
+}
+
+presets.brushSize.value = context.brush.size;
+presets.brushSizeValue.textContent = context.brush.size;
+
 view.init();
 toolbox.init();
 
@@ -32,6 +40,17 @@ document.querySelector("#color-fg").addEventListener('change', ev => {
 	context.colors.fg = ev.target.value;
 })
 
-document.querySelector("#brush-size").addEventListener('change', ev => {
-	context.brush.size = ev.target.value;
+
+const brushSizeChange$ = $.merge(
+	$.fromEvent(presets.brushSize, 'change').map(ev => ev.target.value),
+	$.fromEvent(document, 'keypress')
+		.filter(ev => ['[', ']'].indexOf(ev.key) > -1)
+		.map(ev => (ev.key === '[') ? context.brush.size - 1 : context.brush.size + 1)
+)
+	.filter(value => value > 0 && value <= 100);
+
+brushSizeChange$.subscribe(value => {
+	context.brush.size = value;
+	presets.brushSizeValue.textContent = value;
+	presets.brushSize.value = value;
 })
