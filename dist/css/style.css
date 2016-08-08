@@ -2357,6 +2357,12 @@ body {
       height: 100%;
       border-width: 0px;
       z-index: 99; }
+    .gui .viewport .view > * {
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px; }
     .gui .viewport .view canvas {
       width: 100%;
       height: 100%; }

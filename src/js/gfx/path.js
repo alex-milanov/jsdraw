@@ -1,12 +1,16 @@
 'use strict';
 
 class Path {
-  constructor({color, brush, lineJoin}){
-    this.color = color;
-    this.brush = brush;
-    this.lineJoin = lineJoin;
-    this.points = [];
-    this.path2d = new Path2D();
+  constructor({color, brush, lineJoin = 'round', lineCap = 'round', shadowBlur = 5}){
+    Object.assign(this, {
+      color,
+      brush,
+      lineJoin,
+      lineCap,
+      shadowBlur,
+      points: [],
+      path2d: new Path2D(),
+    });
   }
   moveTo(x, y){
     this.path2d.moveTo(x, y);
@@ -19,6 +23,9 @@ class Path {
   drawOn(ctx){
     ctx.lineJoin = this.lineJoin;
     ctx.strokeStyle = this.color;
+    ctx.lineCap = this.lineCap;
+    ctx.shadowBlur = this.shadowBlur;
+    ctx.shadowColor = this.color;
     ctx.lineWidth = this.brush.size;
     ctx.stroke(this.path2d);
   }

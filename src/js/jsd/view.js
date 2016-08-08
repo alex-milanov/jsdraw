@@ -16,13 +16,13 @@ class View extends gui.Element {
 		const canvas = document.createElement('canvas');
 		canvas.zIndex = 100 + this.layers.length;
 		const layer = {
-			name:  "Layer "+this.layers.length,
+			name:  "Layer " + this.layers.length,
 			canvas: canvas,
 			paths: []
 		};
 		this.layers.push(layer);
-		this.focusedLayer = this.layers.length-1;
-		this.dom.appendChild(canvas);
+		this.focusedLayer = this.layers.length - 1;
+		this.dom.querySelector('.layers').appendChild(canvas);
 	}
 	init() {
 		super.init();
@@ -52,14 +52,17 @@ class View extends gui.Element {
 						});
 
 						painting = true;
-						ctx = this.layers[0].canvas.getContext('2d');
-						/*ctx.shadowBlur = 1;
-						ctx.shadowColor = 'rclientWidthgb(0, 0, 0)';*/
+						ctx = this.dom.querySelector('.interaction').getContext('2d');
+						ctx.canvas.width = this.dom.clientWidth;
+						ctx.canvas.height = this.dom.clientHeight;
+						// ctx.shadowBlur = 1;
+						// ctx.shadowColor = 'rclientWidthgb(0, 0, 0)';
 
 						currentPath.moveTo(ev.offsetX, ev.offsetY);
 						break;
 					case 'mousemove':
 						if(painting){
+							ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 							currentPath.lineTo(ev.offsetX, ev.offsetY);
 							currentPath.drawOn(ctx);
 						}
@@ -67,6 +70,7 @@ class View extends gui.Element {
 					case 'mouseup':
 						// currentPath.path2d.closePath();
 						this.layers[this.focusedLayer].paths.push(Object.create(currentPath));
+						ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 						ctx = null;
 						painting = false;
 						currentPath = null;

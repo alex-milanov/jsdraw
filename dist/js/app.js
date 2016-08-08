@@ -7192,15 +7192,24 @@ var Path = function () {
   function Path(_ref) {
     var color = _ref.color;
     var brush = _ref.brush;
-    var lineJoin = _ref.lineJoin;
+    var _ref$lineJoin = _ref.lineJoin;
+    var lineJoin = _ref$lineJoin === undefined ? 'round' : _ref$lineJoin;
+    var _ref$lineCap = _ref.lineCap;
+    var lineCap = _ref$lineCap === undefined ? 'round' : _ref$lineCap;
+    var _ref$shadowBlur = _ref.shadowBlur;
+    var shadowBlur = _ref$shadowBlur === undefined ? 5 : _ref$shadowBlur;
 
     _classCallCheck(this, Path);
 
-    this.color = color;
-    this.brush = brush;
-    this.lineJoin = lineJoin;
-    this.points = [];
-    this.path2d = new Path2D();
+    Object.assign(this, {
+      color: color,
+      brush: brush,
+      lineJoin: lineJoin,
+      lineCap: lineCap,
+      shadowBlur: shadowBlur,
+      points: [],
+      path2d: new Path2D()
+    });
   }
 
   _createClass(Path, [{
@@ -7220,6 +7229,9 @@ var Path = function () {
     value: function drawOn(ctx) {
       ctx.lineJoin = this.lineJoin;
       ctx.strokeStyle = this.color;
+      ctx.lineCap = this.lineCap;
+      ctx.shadowBlur = this.shadowBlur;
+      ctx.shadowColor = this.color;
       ctx.lineWidth = this.brush.size;
       ctx.stroke(this.path2d);
     }
@@ -7467,7 +7479,7 @@ var View = function (_gui$Element) {
 			};
 			this.layers.push(layer);
 			this.focusedLayer = this.layers.length - 1;
-			this.dom.appendChild(canvas);
+			this.dom.querySelector('.layers').appendChild(canvas);
 		}
 	}, {
 		key: 'init',
@@ -7507,14 +7519,17 @@ var View = function (_gui$Element) {
 						});
 
 						painting = true;
-						ctx = _this2.layers[0].canvas.getContext('2d');
-						/*ctx.shadowBlur = 1;
-      ctx.shadowColor = 'rclientWidthgb(0, 0, 0)';*/
+						ctx = _this2.dom.querySelector('.interaction').getContext('2d');
+						ctx.canvas.width = _this2.dom.clientWidth;
+						ctx.canvas.height = _this2.dom.clientHeight;
+						// ctx.shadowBlur = 1;
+						// ctx.shadowColor = 'rclientWidthgb(0, 0, 0)';
 
 						currentPath.moveTo(ev.offsetX, ev.offsetY);
 						break;
 					case 'mousemove':
 						if (painting) {
+							ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 							currentPath.lineTo(ev.offsetX, ev.offsetY);
 							currentPath.drawOn(ctx);
 						}
@@ -7522,6 +7537,7 @@ var View = function (_gui$Element) {
 					case 'mouseup':
 						// currentPath.path2d.closePath();
 						_this2.layers[_this2.focusedLayer].paths.push(Object.create(currentPath));
+						ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 						ctx = null;
 						painting = false;
 						currentPath = null;
