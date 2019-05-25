@@ -4,31 +4,8 @@
     <title>JSDraw Alpha</title>
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body>
-    <div class="gui">
-      <div class="header">
-        <div class="toolbox">
-          <button class="toolbox-option selected fa fa-hand-paper-o" data-option-param="tool" data-option-value="move" data-option-key="v"></button>
-          <button class="toolbox-option fa fa-pencil" data-option-param="tool" data-option-value="brush" data-option-key="b"></button>
-          <button class="toolbox-option fa fa-eraser" data-option-param="tool" data-option-value="eraser" data-option-key="e"></button>
-          <button class="toolbox-option fa fa-fire-extinguisher" data-option-param="tool" data-option-value="bucket" data-option-key="g"></button>
-        </div>
-        <div class="logo"><i class="fa fa-paint-brush"></i>JSDraw</div>
-        <div class="presets">
-          <input type="range" step="1" min="0" max="100" value="1" id="brush-size"><span id="brush-size-value">1</span>
-          <div class="color-preset">
-            <input type="color" value="#000000" id="color-fg">
-            <input type="color" value="#ffffff" id="color-bg">
-          </div>
-        </div>
-      </div>
-      <div class="viewport">
-        <div class="view">
-          <div class="layers"></div>
-          <canvas class="interaction"></canvas>
-        </div>
-      </div>
-    </div>
+  <body onLoad="actions.init()">
+    <div class="gui"></div>
     <script src="js/app.js"></script>
   </body>
 </html>

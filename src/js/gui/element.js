@@ -1,6 +1,7 @@
 'use strict';
 
-import {Observable as $} from 'rx-lite';
+const Rx = require('rx');
+const $ = Rx.Observable;
 
 class Element {
 	constructor(dom, context) {

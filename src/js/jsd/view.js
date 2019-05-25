@@ -1,8 +1,9 @@
 'use strict';
 
-import {Observable as $} from 'rx-lite';
-import gui from '../gui';
-import Path from '../gfx/path';
+const Rx = require('rx');
+const $ = Rx.Observable;
+const gui = require('../gui');
+const Path = require('../gfx/path');
 
 class View extends gui.Element {
 	constructor(dom, context) {
