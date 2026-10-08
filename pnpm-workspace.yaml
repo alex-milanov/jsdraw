@@ -1,0 +1,6 @@
+allowBuilds:
+  '@parcel/watcher': true
+  bufferutil: true
+  core-js: true
+  nodemon: true
+  utf-8-validate: true

@@ -4,6 +4,6 @@ web based drawing app
 ## Setup & Run
 Type in the console:
 ```
-npm i && npm start
+pnpm i && pnpm start
 ```
-Then open up: http://localhost:8080
+Then open up: http://localhost:3065
